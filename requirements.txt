@@ -1,0 +1,5 @@
+gradio>=4.29.0
+PyPDF2 
+openai 
+requests 
+pydub
