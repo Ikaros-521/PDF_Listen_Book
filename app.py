@@ -6,6 +6,7 @@ import re
 import time
 import os
 
+
 def extract_text_from_pdf(pdf_file):
     reader = PyPDF2.PdfReader(pdf_file)
     text = ''
@@ -85,6 +86,7 @@ def correct_or_summarize_text(prompt, result_text, api_key, model, api_base=None
 
 # Function to send text chunks to third-party API for playback
 def send_to_third_party_api(text, third_party_api_url, output_filename):
+    print("开始准备发送工作")
     text_chunks = split_text_by_punctuation(text, max_length=300)
     log_output = ""
     chunk_count = 0
@@ -203,7 +205,7 @@ def gradio_interface():
             send_to_third_party_api,
             inputs=[result_text, third_party_api_input, out_txt_path_input],
             outputs=[result_text, run_output],  # 实时更新 result_text 和 log_output
-            every=60  # 每次处理 60 条后执行一次更新
+            every=60
         )
 
     return interface
